@@ -46,7 +46,7 @@ export class CartComponent {
       },
       complete: () => {
         
-        this.router.navigate(['./home']
+       
       }
 
     });

@@ -1,0 +1,26 @@
+<section class="w-[80%] mx-auto max-w-screen-xl p-4">
+  <!-- Corrected title to reflect brands -->
+  <h1 class="text-4xl text-green-600 text-center mb-8">Our Brands</h1>
+
+  @if (mybrand && mybrand.length > 0) {
+    <!-- Adjusted grid for displaying brands in a more suitable layout -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+      @for(brand of mybrand; track brand._id) {
+        <div class="flex flex-col items-center p-4 border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+          <!-- Corrected image source and alt text -->
+          <img
+            [src]="brand.image"
+            class="w-full h-24 object-contain py-2 rounded-md"
+            [alt]="brand.name"
+          >
+          <!-- Displaying brand name -->
+          <h2 class="capitalize text-lg font-semibold text-gray-800 mt-2 text-center">{{ brand.name }}</h2>
+          <!-- Removed incorrect category and price information -->
+        </div>
+      }
+    </div>
+  } @else {
+    <!-- Corrected empty state message -->
+    <p class="text-center text-gray-500 text-xl mt-10">No brands found.</p>
+  }
+</section>

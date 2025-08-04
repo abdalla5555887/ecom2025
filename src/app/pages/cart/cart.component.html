@@ -45,9 +45,10 @@
 
 
   <div  class="flex  flex-wrap justify-around items-center mt-4">
-                    <button (click)="deleteCart()" class="text-white  flex justify-between items-center gap-4 bg-blue-800 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-800 dark:hover:bg-blue-200 dark:focus:ring-blue-400"><span> clear cart</span> <i class="fa-solid fa-trash-can bg-amber-200 p-1 rounded-md text-green-700 "></i></button>
-                    <button [routerLink]="['/checkout', cartid]"
-                    routerLinkActive="router-link-active"  class="my-2 text-white  flex justify-between items-center gap-4 bg-green-800 hover:bg-green-500 focus:ring-4 focus:outline-none focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-800 dark:hover:bg-green-200 dark:focus:ring-blue-400"><span> go to pay</span><i class="fa-solid fa-comment-dollar  bg-amber-200 p-1 rounded-md text-green-700"></i> </button>
+                    <button (click)="deleteCart()"  [disabled]="cartItems.products.length === 0"  [routerLink]="['/home']"
+                     class="text-white  disabled:hidden flex justify-between items-center gap-4 bg-blue-800 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-800 dark:hover:bg-blue-200 dark:focus:ring-blue-400"><span> clear cart</span> <i class="fa-solid fa-trash-can bg-amber-200 p-1 rounded-md text-green-700 "></i></button>
+                    <button [routerLink]="['/checkout', cartid]" [disabled]="cartItems.products.length === 0"
+                    routerLinkActive="router-link-active"  class="my-2 text-white disabled:hidden flex justify-between items-center gap-4 bg-green-800 hover:bg-green-500 focus:ring-4 focus:outline-none focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-800 dark:hover:bg-green-200 dark:focus:ring-blue-400"><span> go to pay</span><i class="fa-solid fa-comment-dollar  bg-amber-200 p-1 rounded-md text-green-700"></i> </button>
 
                 </div>
 </section>

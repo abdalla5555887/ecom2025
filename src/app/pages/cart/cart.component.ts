@@ -1,7 +1,9 @@
+import { HomeComponent } from './../home/home.component';
+import { routes } from './../../app.routes';
 import { Component, inject } from '@angular/core';
 import { ScartService } from '../../core/services/cart/scart.service';
 import { Icart } from '../../shared/interface/icart';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -11,6 +13,7 @@ import { RouterLink } from '@angular/router';
 })
 export class CartComponent {
   private readonly scartService = inject(ScartService);
+  private router=inject(Router)
   cartItems: Icart = {} as Icart;
   cartid: string = ''!;
 
@@ -18,6 +21,7 @@ export class CartComponent {
     this.scartService.getCart().subscribe({
       next: (res) => {
         this.cartItems = res.data;
+        console.log(this.cartItems);
         this.cartid = res.data._id;
       },
       error: (err) => {
@@ -27,19 +31,24 @@ export class CartComponent {
       }
     });
 
+
+
   }
   deleteItem(id: string): void {
   this.scartService.deleteorder(id).subscribe({
       next: (res) => {
         this.scartService.cartNumber.next(res.numOfCartItems);
         this.cartItems = res.data;
+
+
       },
       error: (err) => {
       },
       complete: () => {
       }
-    });
 
+    });
+this.router.navigate(['/home',HomeComponent])
 }
 
 updatecount(count:any,id:string): void {

@@ -1,6 +1,6 @@
 import { PayService } from './../../core/services/pay/pay.service';
-import { ActivatedRoute } from '@angular/router';
-import { Component, inject } from '@angular/core';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
@@ -9,63 +9,66 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css'
 })
-export class CheckoutComponent {
+
+
+export class CheckoutComponent implements OnInit {
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly payService = inject(PayService);
-payform !:FormGroup;
-id:string = ''!;
-  onSubmit() {
-  // if (this.payform.valid) {
-    console.log('Form Submitted!', this.payform.value);
+private readonly router = inject(Router);
+  payform!: FormGroup;
+  id: string = '';
 
-    // You can call your service to process the payment here
-    // For example:
+  ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe({
+      next: (res) => {
+        this.id = res.get('id')!;
+        console.log('Checkout ID:', this.id);
+      }
+    });
+
+    this.payform = new FormGroup({
+      "details": new FormControl(null, [Validators.required]),
+      "phone": new FormControl(null, [Validators.required, Validators.pattern('^01[0125][0-9]{8}$')]),
+      "city": new FormControl(null, [Validators.required]),
+      "password": new FormControl(null, [Validators.required, Validators.pattern('^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d).{8,}$')])
+    });
+  }
+
+  onSubmit() {
+    console.log('Form Submitted!', this.payform.value);
+  }
+
+  payvisa() {
     this.payService.pay(this.id, this.payform.value).subscribe({
       next: (res) => {
         console.log('Payment successful:', res);
-      if (res.status==="success") {
-        // Redirect to the payment page or handle the session ID as needed
-        open (res.session.url, '_self');
-      }
-        // Handle successful payment response
-      }   ,
+        if (res.status === "success") {
+          open(res.session.url, '_self');
+        }
+      },
       error: (err) => {
         console.error('Payment error:', err);
-        // Handle payment error response
-      },})
-
-
-
-
-    // Here you can handle the form submission, e.g., send data to the server
-  // }
-}
-
-ngOnInit(): void {
-  //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-  // //Add 'implements OnInit' to the class.
-  this.activatedRoute.paramMap.subscribe({
-    next: (res) => {
-    this.id = res.get('id')!;
-      console.log('Checkout ID:', this.id);
-    }
+      }
+    });
   }
-);
 
-  // Initialize the form group with controls and validators
-      // You can use the ID to fetch data or perform actions related to the checkout
+  paycash() {
+    this.payService.paycash(this.id, this.payform.value).subscribe({
+      next: (res) => {
+        console.log('Cash Payment successful:', res.data.status
 
-
- this. payform = new FormGroup({
-
-
-        "details":new FormControl (null,[Validators.required]),
-        "phone":new FormControl (null,[Validators.required, Validators.pattern('/^01[0125][0-9]{8}$/')]),
-        "city":new FormControl (null,[Validators.required])
+)
+      },
+      error: (err) => {
+        console.log('Payment error:', err.error.message);
 
 
-  });
+      },
+          complete: () => {
+      // التنقل بعد الانتهاء
+      this.router.navigate(['/home']);
+    }
 
-
-}
+    });
+  }
 }

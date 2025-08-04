@@ -17,13 +17,13 @@
   </owl-carousel-o>
 
     </div>
-    <div class="w-full   ">
-    <div class="flex justify-center items-center flex-col gap-1  ">
-      <img src="images/slider-3.jpeg" class="w-full  sm:object-fit md:object-cover  h-[150px] rounded-xl px-0.5" alt="">
-    </div>
-    <div >
-      <img src="images/slider-2.jpeg" class="w-full sm:object-fit md:object-cover h-[150px] rounded-xl px-0.5" alt="">
-    </div>
+    <div class="w-full  flex justify-center md:flex-col  h-[300px] items-center sm:flex-row  ">
+
+      <img src="images/slider-3.jpeg" class=" sm:w-[50%]   md:w-full  sm:object-contain md:object-cover  h-[150px] rounded-xl px-0.5" alt="">
+
+
+      <img src="images/slider-5.jpeg" class=" sm:w-[50%]   md:w-full sm:object-contain md:object-cover h-[150px] rounded-xl px-0.5" alt="">
+
   </div>
   </div>
 </div>
@@ -42,33 +42,7 @@
 
   </owl-carousel-o>
 
-<!--
-<div class="w-[90%] mx-auto max-w-screen-xl px-4">
-    <div class="flex justify-baseline items-center flex-no-wrap gap-4 w-full ">
-        @for(cate of mycat; track cate._id){
 
-
-
-                    <div  class="max-w-sm min-w-[300px] bg-white border  border-gray-200 rounded-lg shadow-sm dark:bg-gray-200 dark:border-gray-700 ">
-
-
-                    <img class="p-8 rounded-t-lg w-full h-[300px]" [src]="cate.image" [alt]="cate.name" />
-
-                    <div class="px-5 pb-5  flex flex-col justify-between">
-
-
-                            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-black">{{cate.name}}</h5>
-
-                    </div>
-                </div>
-
-
-
-
-
-        }
-    </div>
-</div> -->
 
 <p class="text-3xl text-center uppercase">Popular products</p>
 
@@ -79,7 +53,7 @@
     @for(pro of myproduct.slice(0 , 24); track pro._id){
 
 
-        <div  class="max-w-sm bg-white border  border-blue-200 rounded-lg shadow-sm dark:bg-blue-300 dark:border-gray-700">
+        <div  class="max-w-sm bg-white border  border-blue-200 rounded-lg shadow-sm dark:bg-[#B0C4B1] dark:border-gray-700">
              <div  [routerLink]="['/details',pro._id]"  >
 
                 <img class="p-8 rounded-t-lg w-full h-[300px]" [src]="pro.imageCover" alt="product image" />

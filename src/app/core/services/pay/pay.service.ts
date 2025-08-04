@@ -14,6 +14,11 @@ return this.httpClient.post(`https://ecommerce.routemisr.com/api/v1/orders/check
 {  headers:{token:this.token!} })
 
   }
+  paycash(id:string,shipdata:object):Observable<any>{
+return this.httpClient.post(`https://ecommerce.routemisr.com/api/v1/orders/${id}?url=${window.location.origin}`,{"shippingAddress":shipdata},
+{  headers:{token:this.token!} })
+
+  }
 
 
 }

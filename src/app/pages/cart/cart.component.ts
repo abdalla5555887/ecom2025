@@ -45,10 +45,11 @@ export class CartComponent {
       error: (err) => {
       },
       complete: () => {
+        this.router.navigate(['./home']
       }
 
     });
-this.router.navigate(['/home',HomeComponent])
+
 }
 
 updatecount(count:any,id:string): void {

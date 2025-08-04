@@ -6,17 +6,17 @@
     <div>
       <img
         [src]="prodata.imageCover"
-        class="w-full object-contain"
+        class="w-full object-contain py-2"
         [alt]="prodata.title"
       />
     </div>
 
-    <div>
+    <div  class="p-8 border-b-2 border-gray-500">
       <h2 class="capitalize">title:{{prodata.title.split( ' ' , 2).join(' ')}}</h2>
       <p class="text-gray-700 my-2">{{prodata.description}}</p>
       <h3 class="text-green-600">{{prodata.category.name}}</h3>
-      <div class="flex justify-start items-center gap-48 ">
-        <span class="capitalize">price {{prodata.price}} EGP</span>
+      <div class="flex flex-wrap justify-start items-center gap-48 ">
+        <span class="capitalize ">price {{prodata.price}} EGP</span>
         <div class="flex items-center text-4xl">
           <span class="text-gray-500 ">{{prodata.ratingsAverage}}</span>
           <i class="fas fa-star text-yellow-300"></i>
@@ -24,8 +24,8 @@
       </div>
     </div>
   </div>
-<div  class="flex justify-around items-center mt-4">
-                    <button class="text-white  flex justify-between items-center gap-4 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><span> Add to cart</span> <i class="fa-solid fa-plus-circle  text-green-700 "></i></button>
+<div  class="flex flex-wrap justify-around items-center mt-4">
+                    <button class="text-white  my-2 flex justify-between items-center gap-4 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><span> Add to cart</span> <i class="fa-solid fa-plus-circle  text-green-700 "></i></button>
 
                     <button class="btn-main  text-red-500  flex justify-between items-center gap-4 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><span>Add To wish list </span> <i class="fa-solid fa-heart text-red-500 "></i></button>
                 </div>
